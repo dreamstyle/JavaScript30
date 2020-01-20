@@ -31,7 +31,7 @@
     ctx.moveTo(lastX, lastY)
     ctx.lineTo(e.offsetX, e.offsetY)
     ctx.stroke()
-    ;[lastX, lastY] = [e.offsetX, e.offsetY]
+    ;[lastX, lastY] = [e.offsetX, e.offsetY] // 採用 Standard JS 但遇到「分號自動插入」問題，可以這樣處理
 
     hue++
     if (hue > 360) {
