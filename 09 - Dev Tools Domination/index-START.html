@@ -18,28 +18,55 @@
     }
 
     // Regular
+    console.log('Hello');
 
     // Interpolated
+    console.log('Hello, you are a cute %s, aren\'t you?', '🐶');
 
     // Styled
+    console.log('%c I am a big message!!', 'color: #123456; font-size: 24px; background-color: white;');
 
     // warning!
+    console.warn('Due date: 2020/06/31')
 
     // Error :|
+    console.error('BOOM💢')
 
     // Info
+    console.info('Info: JS is pretty fun')
 
     // Testing
+    console.assert(1 === 1, 'This is wrong.')
 
     // clearing
+    console.clear()
 
     // Viewing DOM Elements
-
+    console.log(document.querySelector('p'));
+    console.dir(document.querySelector('p'));
+    
     // Grouping together
+    console.group('%c 狗狗們', 'color: yellow')
+    console.table(dogs)
+    console.groupEnd()
 
     // counting
+    console.count('Nate')
+    console.count('Nate')
+    console.count('Nate')
+    console.count('Abbie')
+    console.count('Katie')
+    console.count('Katie')
+    console.count('Nate')
 
     // timing
+    console.time('fetching user data')
+    fetch('https://api.github.com/users/dreamstyle')
+      .then(blob => blob.json())
+      .then(data => {
+        console.timeEnd('fetching user data')
+        console.log(data)
+      })
 
   </script>
 </body>
