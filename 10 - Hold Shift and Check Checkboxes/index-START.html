@@ -96,6 +96,32 @@
   </div>
 
 <script>
+  const inputs = document.querySelectorAll('input[type="checkbox"]')
+  let start
+
+  function check(e) {
+    let inBetween = false
+    
+    if (e.shiftKey && this.checked) {
+      // 取得要改變的範圍
+      // 全部設為選取/未選取
+      inputs.forEach(input => {
+        if (input === this || input === start) {
+          inBetween = !inBetween
+        }
+
+        if (inBetween) {
+          input.checked = true
+        }
+      })
+    }
+
+    start = this
+  }
+
+  inputs.forEach(input => {
+    input.addEventListener('click', check)
+  })
 </script>
 </body>
 </html>
