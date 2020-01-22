@@ -43,6 +43,8 @@
   </div>
 
   <script>
+    const images = document.querySelectorAll('img')
+
     function debounce(func, wait = 20, immediate = true) {
       var timeout;
       return function() {
@@ -58,6 +60,23 @@
       };
     }
 
+    function cehckSlide(e) {
+      images.forEach(image => {
+        const slideInAt = window.innerHeight + window.scrollY
+        const imageHalf = image.offsetTop + (image.height / 2)
+        const imageBottom = image.offsetTop + image.height
+        const isHalfShown = slideInAt > imageHalf
+        const isNotScrolledPast = window.scrollY < imageBottom
+
+        if (isHalfShown && isNotScrolledPast) {
+          image.classList.add('active')
+        } else {
+          image.classList.remove('active')
+        }
+      })
+    }
+
+    window.addEventListener('scroll', debounce(cehckSlide))
   </script>
 
   <style>
