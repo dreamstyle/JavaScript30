@@ -7,6 +7,24 @@
 </head>
 <body>
 <script>
+  // 這隻 JS 本身就含有 KONAMI CODE，輸入後會出現彩虹獨角獸
+  const SECRET_CODE = 'nate'
+  let keyPressed = []
+
+  function logKey(e) {
+    keyPressed.push(e.key)
+
+    if (keyPressed.length > SECRET_CODE.length) {
+      keyPressed.splice(0, 1)
+    }
+    
+    if (keyPressed.join('').includes(SECRET_CODE)) {
+      console.log('Live what you love 😎')
+      cornify_add()
+    }
+  }
+
+  window.addEventListener('keydown', logKey)
 </script>
 </body>
 </html>
