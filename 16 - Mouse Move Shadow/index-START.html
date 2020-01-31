@@ -35,6 +35,26 @@
   </style>
 
 <script>
+  const hero = document.querySelector('.hero')
+  const text = document.querySelector('h1')
+  const flow = 300
+
+  function mouseMove(e) {
+    const { offsetWidth: width, offsetHeight: height } = hero
+    let { x, y } = e
+    
+    const xFlow = Math.round((x / width * flow) - (flow / 2))
+    const yFlow = Math.round((y / height * flow) - (flow / 2))
+
+    text.style.textShadow = `
+      ${xFlow}px ${yFlow}px 0 rgba(0, 255, 255, .7),
+      ${xFlow * -1}px ${yFlow}px 0 rgba(255, 0, 255, .7),
+      ${yFlow}px ${xFlow}px 0 rgba(255, 255, 0, .7),
+      ${yFlow}px ${xFlow * -1}px 0 rgba(0, 255, 0, .7)
+    `
+  }
+
+  hero.addEventListener('mousemove', mouseMove)
 </script>
 </body>
 </html>
