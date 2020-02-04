@@ -182,6 +182,36 @@
     </li>
   </ul>
 <script>
+  // 取得陣列
+  const times = Array.from(document.querySelectorAll('[data-time]'))
+
+  // 將分和秒各自加總
+  const initialValue = {
+    min: 0,
+    sec: 0
+  }
+  const totalTime = times.reduce((acc, curr) => {
+    // const [min, sec] = curr.dataset.time.split(':').map(parseFloat)
+    const min = parseFloat(curr.dataset.time.split(':')[0])
+    const sec = parseFloat(curr.dataset.time.split(':')[1])
+    return {
+      min: acc.min + min,
+      sec: acc.sec + sec
+    }
+  }, initialValue)
+
+  console.log('total minutes and seconds', totalTime);
+
+  // 進位
+  let secondLeft = totalTime.min * 60 + totalTime.sec
+  const hour = Math.floor(secondLeft / 3600)
+  secondLeft = secondLeft % 3600
+
+  const minute = Math.floor(secondLeft / 60)
+  secondLeft = secondLeft % 60
+
+  console.log('final video length:', hour, minute, secondLeft)
+
 </script>
 </body>
 </html>
