@@ -35,6 +35,39 @@
   </div>
 
 <script>
+  // 1. 計算滑鼠拖曳的長度
+  // 2. 移動 slider 的捲軸
+  const slider = document.querySelector('.items')
+  let isDown = false
+  let startX
+  let scrollLeft
+
+  slider.addEventListener('mousedown', (e) => {
+    isDown = true
+    startX = e.pageX - slider.offsetLeft
+    scrollLeft = slider.scrollLeft
+    slider.classList.add('active')
+  })
+
+  slider.addEventListener('mouseup', () => {
+    isDown = false
+    slider.classList.remove('active')
+  })
+
+  slider.addEventListener('mouseleave', () => {
+    isDown = false
+    slider.classList.remove('active')
+  })
+
+  slider.addEventListener('mousemove', (e) => {
+    if (!isDown) return
+    const x = e.pageX - slider.offsetLeft
+    const diff = (x - startX) * 4
+    slider.scrollLeft = scrollLeft - diff
+  })
+
+
+  
 </script>
 
   </body>
