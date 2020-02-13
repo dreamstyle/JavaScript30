@@ -15,6 +15,30 @@
   </div>
 
 <script>
+  const speed = document.querySelector('.speed')
+  const speedBar = document.querySelector('.speed-bar')
+  const video = document.querySelector('video')
+
+  function handleMove(e) {
+    // 計算滑鼠位置在 speedBar 中的比例
+    const y = e.pageY - this.offsetTop
+    const percentage = y / this.offsetHeight
+
+    // 更新速度條的介面
+    const height = Math.floor(percentage * 100) + '%'
+    speedBar.style.height = height + '%'
+    
+    // 計算影片速度為 0.4x ~ 4x 之間
+    const min = 0.4
+    const max = 4
+    const playbackRate = percentage * (max - min) + min
+    speedBar.textContent = playbackRate.toFixed(2) + 'x'
+
+    // 改變影片速度
+    video.playbackRate = playbackRate
+  }
+
+  speed.addEventListener('mousemove', handleMove)
 </script>
 </body>
 </html>
